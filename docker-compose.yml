@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - ./hibiki/app/docker/run_app.sh
+      - "--pyargv=--flagfile=./hibiki/app/docker/extended.flags"
+    restart: always
+    links:
+      - mongodb
+    networks:
+      - net
+
+  cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - ./hibiki/app/docker/run_cron.sh
+      - "--flagfile=./hibiki/app/docker/extended.flags"
+    restart: always
+    links:
+      - mongodb
+    networks:
+      - net
+
+  nginx:
+    build:
+      context: ./hibiki/nginx
+    command:
+      - ./run.sh
+      - "app:9000"
+    restart: always
+    links:
+      - app
+    networks:
+      - net
+    ports:
+      - "80:80"
+
+  mongodb:
+    image: mongo:4.0
+    networks:
+      - net
+    ports:
+      - "27017:27017"
+
+networks:
+  net:
+    driver: bridge

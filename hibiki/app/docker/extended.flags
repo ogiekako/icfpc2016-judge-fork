@@ -7,12 +7,12 @@
 --contest_start_time=1470355200
 # date -u -d '2016-08-05 00:00:00' +%s
 --contest_first_publish_time=1470355200
-# date -u -d '2020-01-01 00:00:00' +%s
---contest_freeze_time=1577836800
-# date -u -d '2020-01-01 00:00:00' +%s
---contest_last_publish_time=1577836800
-# date -u -d '2020-01-01 00:00:00' +%s
---contest_end_time=1577836800
+# date -u -d '2030-01-01 00:00:00' +%s
+--contest_freeze_time=1893456000
+# date -u -d '2030-01-01 00:00:00' +%s
+--contest_last_publish_time=1893456000
+# date -u -d '2030-01-01 00:00:00' +%s
+--contest_end_time=1893456000
 --contest_primary_snapshot_interval=60
 --contest_secondary_snapshot_interval=60
 
